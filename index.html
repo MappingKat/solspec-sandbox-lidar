@@ -75,14 +75,14 @@
           "BaseLayers" : {
             "DSM": L.tileLayer('https://api.solspec.solutions/public/tiler/tiles/{z}/{x}/{y}.png?key=HG_Energy/dtm_cog.tif&processing=hillshade'),
             "DTM": L.tileLayer('https://api.solspec.solutions/public/tiler/tiles/{z}/{x}/{y}.png?key=HG_Energy/dtm_cog.tif'),
-            "Hillshade": L.tileLayer('https://api.solspec.solutions/public/tiler/tiles/{z}/{x}/{y}.png?key=HG_Energy/dsm_cog.tif&style=hypso.txt'),
+            "DTM with some colors": L.tileLayer('https://api.solspec.solutions/public/tiler/tiles/{z}/{x}/{y}.png?key=HG_Energy/dsm_cog.tif&style=hypso.txt'),
           }
         },
         var overlays = {
           "Reference Layers": {
         		"Centerline": L.geoJson(centerline.responseJSON),
             "Active Landslides":  L.geoJson(landslides.responseJSON)
-          },
+          }
           // "Analytics": {
           //   "Hillshade with trees":L.tileLayer('https://api.solspec.solutions/public/tiler/tiles/{z}/{x}/{y}.png?key=HG_Energy/dtm_cog.tif&processing=hillshade'),
           //   "Potential Landslides": L.tileLayer('https://api.solspec.solutions/public/tiler/tiles/{z}/{x}/{y}.png?key=HG_Energy/landslide_potential/landslide_potential_enhanced_cog.tif'),
