@@ -78,7 +78,7 @@
             "DTM with some colors": L.tileLayer('https://api.solspec.solutions/public/tiler/tiles/{z}/{x}/{y}.png?key=HG_Energy/dsm_cog.tif&style=hypso.txt'),
           }
         },
-        var overlays = {
+        overlays = {
           "Reference Layers": {
         		"Centerline": L.geoJson(centerline.responseJSON),
             "Active Landslides":  L.geoJson(landslides.responseJSON)
