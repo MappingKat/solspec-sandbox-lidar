@@ -129,7 +129,7 @@
         overlays = {
       		"<h3><img src='yellow_line.svg' alt='Kiwi standing on oval'>Potential Pipe Centerline</h3>": L.geoJson(centerline.responseJSON, {style: centerlineStyle}),
           "<h3><img src='red_polygon.svg' alt='Kiwi standing on oval'>Active Landslides</h3>":  L.geoJson(landslides.responseJSON, {style: activeLandslideStyle}),
-          // "<h3>Surface Hydrology Channels</h3>": L.tileLayer('https://api.solspec.solutions/public/tiler/tiles/{z}/{x}/{y}.png?key=HG_Energy/d_infinity/d_infinity_cog.tif&style=BrownPurple-v2.txt'),
+          "<h3>Surface Hydrology Channels</h3>": L.tileLayer('https://api.solspec.solutions/public/tiler/tiles/{z}/{x}/{y}.png?key=HG_Energy/d_infinity/d_infinity_cog.tif&style=BrownPurple-v2.txt'),
           // "<h3>Potential Landslides</h3>": L.tileLayer('https://api.solspec.solutions/public/tiler/tiles/{z}/{x}/{y}.png?key=HG_Energy/landslide_potential/landslide_potential_enhanced_cog.tif'),
           // "<h3>Hillshade</h2>": L.tileLayer('https://api.solspec.solutions/public/tiler/tiles/{z}/{x}/{y}.png?key=HG_Energy/dsm_cog.tif&style=hypso.txt'),
       	},
@@ -150,7 +150,7 @@
         L.control.zoom({position:'topright'}).addTo(window.map);
 
         L.control.layers(baselayers, overlays,  { position: 'topleft', collapsed: false}).addTo(window.map);
-        $('<h2 id="mapTitle">Be Proactive. Not Reactive.</h2><p>This map tells a story of a heavily forested landscape with hidden landslides underneath. When routing pipeline, these landslides are not apparent.</p>').insertBefore('div.leaflet-control-layers-base');
+        $('<h2 id="mapTitle">Be Proactive. Not Reactive.</h2><p>Case Study. How do you determine where to lay pipe in a new area? Our software and data collection shows heavily forested landscape with hidden landslides underneath. When routing pipeline with boots on the ground and just satellite imagery, these landslides are not apparent. Using SolSpec processing and derivatives, we were able to identify landslides that the proposed pipe was going to run through.</p>').insertBefore('div.leaflet-control-layers-base');
         window.map.on('moveend', function() {
           console.log(window.map.getBounds());
           console.log(window.map.getCenter())
