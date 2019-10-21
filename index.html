@@ -12,7 +12,7 @@
       <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
   <![endif]-->
   <style>
-  body {
+    body {
     	padding: 0;
     	margin: 0;
     }
@@ -20,12 +20,38 @@
     	height: 100%;
     	width: 100vw;
     }
-    body {
-      padding:0;
-      margin:0;
-    }
     h3{
       display:inline;
+    }
+    .legend {
+    	line-height: 18px;
+    	color: #333333;
+    	font-family: 'Open Sans', Helvetica, sans-serif;
+    	padding: 6px 8px;
+    	background: white;
+    	background: rgba(255,255,255,0.8);
+    	box-shadow: 0 0 15px rgba(0,0,0,0.2);
+    	border-radius: 5px;
+    }
+
+    .legend i {
+    	width: 18px;
+    	height: 18px;
+    	float: left;
+    	margin-right: 8px;
+    	opacity: 0.7;
+    }
+
+    img {
+    	width: 18px;
+    	height: 18px;
+      padding: 0 20px;
+    }
+
+    .legend p {
+    	font-size: 12px;
+    	line-height: 18px;
+    	margin: 0;
     }
     .leaflet-touch .leaflet-control-layers, .leaflet-touch .leaflet-bar {
       border: none;
@@ -61,14 +87,14 @@
           alert(xhr.statusText)
         }
       }),
-      hydro = $.ajax({
-       url:"https://api.solspec.solutions/public/tiler/file?key=HG_Energy/problematic_surface_hydrology.geojson",
-       dataType: "json",
-       success: console.log("Hydro successfully loaded!"),
-       error: function (xhr) {
-          alert(xhr.statusText)
-          }
-      }),
+      // hydro = $.ajax({
+      //  url:"https://api.solspec.solutions/public/tiler/file?key=HG_Energy/problematic_surface_hydrology.geojson",
+      //  dataType: "json",
+      //  success: console.log("Hydro successfully loaded!"),
+      //  error: function (xhr) {
+      //     alert(xhr.statusText)
+      //     }
+      // }),
       landslides = $.ajax({
          url:"https://api.solspec.solutions/public/tiler/file?key=HG_Energy/active_landslides_.geojson",
          dataType: "json",
@@ -96,20 +122,16 @@
           };
         }
         var baselayers = {
-            "<h3>Satellite Imagery</h3><p>View the forested landscape": L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw',{id: 'mapbox.satellite'}),
-            "<h3>Digital Surface Model (DSM)</h3></td></tr><tr><td><p>This LiDAR layer shows the first thing that the LiDAR bounces off of: treetops, cars, houses. View the heavy forest in many landslide areas.</p></td></tr></table>": L.tileLayer('https://api.solspec.solutions/public/tiler/tiles/{z}/{x}/{y}.png?key=HG_Energy/dsm_cog.tif&processing=hillshade'),
-            "<h3>Digital Terrain Model (DTM)</h2><p>This LiDAR layer shows the bare earth terrain-- where you can see more of the landslides.</p>": L.tileLayer('https://api.solspec.solutions/public/tiler/tiles/{z}/{x}/{y}.png?key=HG_Energy/dtm_cog.tif&processing=hillshade'),
+            "<h3>Satellite Imagery</h3><p>View the forested landscape</p>": L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw',{id: 'mapbox.satellite'}),
+            "<h3>Digital Surface Model (DSM)</h3><p>This LiDAR layer shows the first thing that the LiDAR bounces off of: treetops, cars, houses. View the heavy forest in many landslide areas.</p>": L.tileLayer('https://api.solspec.solutions/public/tiler/tiles/{z}/{x}/{y}.png?key=HG_Energy/dsm_cog.tif&processing=hillshade'),
+            "<h3>Digital Terrain Model (DTM)</h3><p>This LiDAR layer shows the bare earth terrain-- where you can see more of the landslides.</p>": L.tileLayer('https://api.solspec.solutions/public/tiler/tiles/{z}/{x}/{y}.png?key=HG_Energy/dtm_cog.tif&processing=hillshade'),
         },
         overlays = {
-      		"<h3>Potential Pipe Centerline</h3>": L.geoJson(centerline.responseJSON, {style: centerlineStyle}),
-          "<h3>Active Landslides</h3>":  L.geoJson(landslides.responseJSON, {style: activeLandslideStyle})
-          // "Analytics": {
-          // "<h3>Hillshade</h2><p></p>": L.tileLayer('https://api.solspec.solutions/public/tiler/tiles/{z}/{x}/{y}.png?key=HG_Energy/dsm_cog.tif&style=hypso.txt'),
-          //   "Hillshade with trees":L.tileLayer('https://api.solspec.solutions/public/tiler/tiles/{z}/{x}/{y}.png?key=HG_Energy/dtm_cog.tif&processing=hillshade'),
-          //   "Potential Landslides": L.tileLayer('https://api.solspec.solutions/public/tiler/tiles/{z}/{x}/{y}.png?key=HG_Energy/landslide_potential/landslide_potential_enhanced_cog.tif'),
-          //   "Surface Hydrology Channels":L.tileLayer('https://api.solspec.solutions/public/tiler/tiles/{z}/{x}/{y}.png?key=HG_Energy/d_infinity/d_infinity_cog.tif&style=BrownPurple-v2.txt'),
-          //   "Hydro": L.geoJson(hydro.responseJSON),
-          // },
+      		"<h3><img src='yellow_line.svg' alt='Kiwi standing on oval'>Potential Pipe Centerline</h3>": L.geoJson(centerline.responseJSON, {style: centerlineStyle}),
+          "<h3><img src='red_polygon.svg' alt='Kiwi standing on oval'>Active Landslides</h3>":  L.geoJson(landslides.responseJSON, {style: activeLandslideStyle}),
+          // "<h3>Surface Hydrology Channels</h3>": L.tileLayer('https://api.solspec.solutions/public/tiler/tiles/{z}/{x}/{y}.png?key=HG_Energy/d_infinity/d_infinity_cog.tif&style=BrownPurple-v2.txt'),
+          // "<h3>Potential Landslides</h3>": L.tileLayer('https://api.solspec.solutions/public/tiler/tiles/{z}/{x}/{y}.png?key=HG_Energy/landslide_potential/landslide_potential_enhanced_cog.tif'),
+          // "<h3>Hillshade</h2>": L.tileLayer('https://api.solspec.solutions/public/tiler/tiles/{z}/{x}/{y}.png?key=HG_Energy/dsm_cog.tif&style=hypso.txt'),
       	},
         southWest = L.latLng(39.11485269995679, -80.54695028811695),
         northEast = L.latLng(39.136659043917334, -80.47309298068286),
@@ -123,13 +145,11 @@
           zoom: 16,
           maxZoom: 22,
           minZoom: 15,
-          layers: [baselayers["<h3>Satellite Imagery</h3><p>View the forested landscape"], overlays["<h3>Potential Pipe Centerline</h3>"], overlays["<h3>Active Landslides</h3>"]]
+          layers: [baselayers["<h3>Satellite Imagery</h3><p>View the forested landscape</p>"], overlays["<h3><img src='yellow_line.svg' alt='Kiwi standing on oval'>Potential Pipe Centerline</h3>"], overlays["<h3><img src='red_polygon.svg' alt='Kiwi standing on oval'>Active Landslides</h3>"]]
         });
         L.control.zoom({position:'topright'}).addTo(window.map);
-        // .addTo(map);
 
         L.control.layers(baselayers, overlays,  { position: 'topleft', collapsed: false}).addTo(window.map);
-        // $('<h6 id="mapTitle"><img src="logo.png" id="logo" alt="solspec logo"></h6>').insertBefore('div.leaflet-control-layers-base');
         $('<h2 id="mapTitle">Be Proactive. Not Reactive.</h2><p>This map tells a story of a heavily forested landscape with hidden landslides underneath. When routing pipeline, these landslides are not apparent.</p>').insertBefore('div.leaflet-control-layers-base');
         window.map.on('moveend', function() {
           console.log(window.map.getBounds());
