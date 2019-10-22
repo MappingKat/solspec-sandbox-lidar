@@ -23,35 +23,10 @@
     h3{
       display:inline;
     }
-    .legend {
-    	line-height: 18px;
-    	color: #333333;
-    	font-family: 'Open Sans', Helvetica, sans-serif;
-    	padding: 6px 8px;
-    	background: white;
-    	background: rgba(255,255,255,0.8);
-    	box-shadow: 0 0 15px rgba(0,0,0,0.2);
-    	border-radius: 5px;
-    }
-
-    .legend i {
-    	width: 18px;
-    	height: 18px;
-    	float: left;
-    	margin-right: 8px;
-    	opacity: 0.7;
-    }
-
     img {
     	width: 18px;
     	height: 18px;
       padding: 0 20px;
-    }
-
-    .legend p {
-    	font-size: 12px;
-    	line-height: 18px;
-    	margin: 0;
     }
     .leaflet-touch .leaflet-control-layers, .leaflet-touch .leaflet-bar {
       border: none;
@@ -145,12 +120,12 @@
           zoom: 16,
           maxZoom: 22,
           minZoom: 15,
-          layers: [baselayers["<h3>Satellite Imagery</h3><p>View the forested landscape</p>"], overlays["<h3><img src='yellow_line.svg' alt='Kiwi standing on oval'>Potential Pipe Centerline</h3>"], overlays["<h3><img src='red_polygon.svg' alt='Kiwi standing on oval'>Active Landslides</h3>"]]
+          layers: [baselayers["<h3>Satellite Imagery</h3><p>View the forested landscape</p>"], overlays["<h3><img src='yellow_line.svg' alt='yellow line'>Potential Pipe Centerline</h3>"], overlays["<h3><img src='red_polygon.svg' alt='Kiwi standing on oval'>Active Landslides</h3>"]]
         });
         L.control.zoom({position:'topright'}).addTo(window.map);
 
         L.control.layers(baselayers, overlays,  { position: 'topleft', collapsed: false}).addTo(window.map);
-        $('<h2 id="mapTitle">Be Proactive. Not Reactive.</h2><p>Case Study. How do you determine where to lay pipe in a new area? Our software and data collection shows heavily forested landscape with hidden landslides underneath. When routing pipeline with boots on the ground and just satellite imagery, these landslides are not apparent. Using SolSpec processing and derivatives, we were able to identify landslides that the proposed pipe was going to run through.</p>').insertBefore('div.leaflet-control-layers-base');
+        $('<h2 id="mapTitle">Be Proactive. Not Reactive.</h2><p>Case Study: Pipeline routing in a landslide-prone area. Our software and data collection shows heavily forested landscape with hidden landslides underneath. When routing pipeline with boots on the ground and just satellite imagery, these landslides are not apparent. Using SolSpec processing and derivatives, we were able to identify landslides that the proposed pipe was going to run through.</p>').insertBefore('div.leaflet-control-layers-base');
         window.map.on('moveend', function() {
           console.log(window.map.getBounds());
           console.log(window.map.getCenter())
