@@ -20,7 +20,7 @@
     	height: 100%;
     	width: 100vw;
     }
-    h3{
+    h3 {
       display:inline;
     }
     img {
@@ -62,14 +62,6 @@
           alert(xhr.statusText)
         }
       }),
-      // hydro = $.ajax({
-      //  url:"https://api.solspec.solutions/public/tiler/file?key=HG_Energy/problematic_surface_hydrology.geojson",
-      //  dataType: "json",
-      //  success: console.log("Hydro successfully loaded!"),
-      //  error: function (xhr) {
-      //     alert(xhr.statusText)
-      //     }
-      // }),
       landslides = $.ajax({
          url:"https://api.solspec.solutions/public/tiler/file?key=HG_Energy/active_landslides_.geojson",
          dataType: "json",
@@ -102,9 +94,9 @@
             "<h3>Digital Terrain Model (DTM)</h3><p>This LiDAR layer shows the bare earth terrain-- where you can see more of the landslides.</p>": L.tileLayer('https://api.solspec.solutions/public/tiler/tiles/{z}/{x}/{y}.png?key=HG_Energy/dtm_cog.tif&processing=hillshade'),
         },
         overlays = {
-      		"<h3><img src='yellow_line.svg' alt='Kiwi standing on oval'>Potential Pipe Centerline</h3>": L.geoJson(centerline.responseJSON, {style: centerlineStyle}),
-          "<h3><img src='red_polygon.svg' alt='Kiwi standing on oval'>Active Landslides</h3>":  L.geoJson(landslides.responseJSON, {style: activeLandslideStyle}),
-          "<h3>Surface Hydrology Channels</h3>": L.tileLayer('https://api.solspec.solutions/public/tiler/tiles/{z}/{x}/{y}.png?key=HG_Energy/d_infinity/d_infinity_cog.tif&style=BrownPurple-v2.txt'),
+      		"<h3><img src='yellow_line.svg'>Potential Pipe Centerline</h3>": L.geoJson(centerline.responseJSON, {style: centerlineStyle}),
+          "<h3><img src='red_polygon.svg'>Active Landslides</h3>":  L.geoJson(landslides.responseJSON, {style: activeLandslideStyle}),
+          "<h3>Surface Hydrology Channels</h3>": L.tileLayer('https://api.solspec.solutions/public/tiler/tiles/{z}/{x}/{y}.png?key=HG_Energy/d_infinity/d_infinity_cog.tif&style=BrownPurple-v2.txt')
           // "<h3>Potential Landslides</h3>": L.tileLayer('https://api.solspec.solutions/public/tiler/tiles/{z}/{x}/{y}.png?key=HG_Energy/landslide_potential/landslide_potential_enhanced_cog.tif'),
           // "<h3>Hillshade</h2>": L.tileLayer('https://api.solspec.solutions/public/tiler/tiles/{z}/{x}/{y}.png?key=HG_Energy/dsm_cog.tif&style=hypso.txt'),
       	},
@@ -120,7 +112,7 @@
           zoom: 16,
           maxZoom: 22,
           minZoom: 15,
-          layers: [baselayers["<h3>Satellite Imagery</h3><p>View the forested landscape</p>"], overlays["<h3><img src='yellow_line.svg' alt='yellow line'>Potential Pipe Centerline</h3>"], overlays["<h3><img src='red_polygon.svg' alt='Kiwi standing on oval'>Active Landslides</h3>"]]
+          layers: [baselayers["<h3>Satellite Imagery</h3><p>View the forested landscape</p>"], overlays["<h3><img src='yellow_line.svg'>Potential Pipe Centerline</h3>"], overlays["<h3><img src='red_polygon.svg'>Active Landslides</h3>"]]
         });
         L.control.zoom({position:'topright'}).addTo(window.map);
 
@@ -131,8 +123,8 @@
           console.log(window.map.getCenter())
         });
     });
-    };
-    window.onload = init();
+  };
+  window.onload = init();
   </script>
 </body>
 </html>
